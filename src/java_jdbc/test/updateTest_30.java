@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class updateTest_30 {
+public class UpdateTest_30 {
 
   public static void main(String[] args) {
 
