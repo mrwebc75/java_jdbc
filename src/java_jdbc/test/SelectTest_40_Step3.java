@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SelectTest_40_Step1 {
+public class SelectTest_40_Step3 {
 
   public static void main(String[] args) {
 
@@ -18,29 +18,23 @@ public class SelectTest_40_Step1 {
       Class.forName(DBinfo.driver);
       conn = DriverManager.getConnection(DBinfo.url, DBinfo.id, DBinfo.pwd);
 
-      String sql = "select name, id, format(salary,0), dept_id, date(hire_date) from emp_copy";
+      // emp_copy 테이블에서 전체사원의 급여 총합을 소수점 두자리까지 출력하시오
+      String sql = "select sum(salary) as 'totSalary' from emp_copy";
       pstmt = conn.prepareStatement(sql);
       rs = pstmt.executeQuery();
 
-      while (rs.next()) {
-        String name = rs.getString(1);
-        int id = rs.getInt(2);
-        String salary = rs.getString(3);
-        int dept_id = rs.getInt(4);
-        String hire_date = rs.getString(5);
+      rs.next();
+      Double totSalary = rs.getDouble("totSalary");
 
-        System.out.printf("사번:%d, 이름:%s, 급여:$%s, 부서:%d, 입사일:%s\n", id, name, salary, dept_id,
-            hire_date);
-      }
+      System.out.printf("전체사원의 급여 총합 : %.2f", totSalary);
 
     } catch (ClassNotFoundException | SQLException e) {
       System.out.println(e.getMessage());
     } finally {
       try {
         rs.close();
-      } catch (SQLException e1) {
-        // TODO Auto-generated catch block
-        e1.printStackTrace();
+      } catch (SQLException e) {
+        e.printStackTrace();
       }
 
       try {
@@ -54,6 +48,5 @@ public class SelectTest_40_Step1 {
         e.printStackTrace();
       }
     }
-
   }
 }

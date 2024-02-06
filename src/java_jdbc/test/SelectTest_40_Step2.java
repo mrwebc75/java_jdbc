@@ -42,6 +42,13 @@ public class SelectTest_40_Step2 {
       System.out.println(e.getMessage());
     } finally {
       try {
+        rs.close();
+      } catch (SQLException e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
+
+      try {
         pstmt.close();
       } catch (SQLException e) {
         e.printStackTrace();
