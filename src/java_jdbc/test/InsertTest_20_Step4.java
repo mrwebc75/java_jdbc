@@ -31,7 +31,7 @@ public class InsertTest_20_Step4 {
       System.out.println(e.getMessage());
     } finally {
       try {
-        stmt.close();
+        pstmt.close();
       } catch (SQLException e) {
         e.printStackTrace();
       }
